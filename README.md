@@ -27,7 +27,7 @@ recover pose (**R, t**), and project a **3D cube** onto real frames using **KAZE
 ## 🧭 Pipeline at a glance (then the roadmap)
 
 <p align="center">
-  <img src="assets/pipeline.png" width="860" alt="AR pipeline overview"/>
+  <img src="assets/pipelineCV.png" width="860" alt="AR pipeline overview"/>
 </p>
 
 1. (Optional) Camera calibration → intrinsics K  
