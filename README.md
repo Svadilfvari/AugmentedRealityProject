@@ -81,36 +81,56 @@ recover pose (**R, t**), and project a **3D cube** onto real frames using **KAZE
 ## 🧠 Method (Math)
 
 ### 1) Pinhole camera model
-\[
-\mathbf{x} \sim \mathbf{P}\mathbf{X}, \quad \mathbf{P}=\mathbf{K}[\mathbf{R}\mid \mathbf{t}]
-\]
+
+$$
+\mathbf{x} \sim \mathbf{P}\mathbf{X},
+\qquad
+\mathbf{P} = \mathbf{K}\,[\mathbf{R}\mid \mathbf{t}]
+$$
 
 ### 2) Planar homography
-\[
-\mathbf{x} \sim \mathbf{H}\mathbf{X}_{plane}
-\]
-Estimated using **Normalized DLT** (centroid → origin, mean distance → \(\sqrt{2}\)):
-\[
-\mathbf{H} = \mathbf{T'}^{-1}\tilde{\mathbf{H}}\mathbf{T}
-\]
+
+$$
+\mathbf{x} \sim \mathbf{H}\,\mathbf{X}_{\text{plane}}
+$$
+
+Estimated using **Normalized DLT** (centroid → origin, mean distance → $\sqrt{2}$):
+
+$$
+\mathbf{H} = \mathbf{T}'^{-1}\,\tilde{\mathbf{H}}\,\mathbf{T}
+$$
 
 ### 3) Pose from homography
-Let \(\mathbf{B}=\mathbf{K}^{-1}\mathbf{H}=[\mathbf{b}_1\ \mathbf{b}_2\ \mathbf{b}_3]\).  
-\[
-\lambda = \frac{1}{\|\mathbf{b}_1\|},\quad
-\mathbf{r}_1=\lambda\mathbf{b}_1,\ 
-\mathbf{r}_2=\lambda\mathbf{b}_2,\ 
-\mathbf{r}_3=\mathbf{r}_1\times\mathbf{r}_2,\ 
-\mathbf{t}=\lambda\mathbf{b}_3
-\]
-Then enforce a valid rotation \(\det(\mathbf{R})=1\).
+
+Let
+
+$$
+\mathbf{B}=\mathbf{K}^{-1}\mathbf{H}=[\,\mathbf{b}_1\ \mathbf{b}_2\ \mathbf{b}_3\,].
+$$
+
+$$
+\begin{aligned}
+\lambda &= \frac{1}{\lVert \mathbf{b}_1 \rVert}, \\
+\mathbf{r}_1 &= \lambda\,\mathbf{b}_1, \\
+\mathbf{r}_2 &= \lambda\,\mathbf{b}_2, \\
+\mathbf{r}_3 &= \mathbf{r}_1 \times \mathbf{r}_2, \\
+\mathbf{t}   &= \lambda\,\mathbf{b}_3.
+\end{aligned}
+$$
+
+Form $\mathbf{R}=[\,\mathbf{r}_1\ \mathbf{r}_2\ \mathbf{r}_3\,]$ and enforce a valid rotation
+
+$$
+\det(\mathbf{R}) = 1.
+$$
 
 ### 4) Cube projection
-\[
-\mathbf{x} \sim \mathbf{P}\mathbf{X}
-\]
-Project vertices and draw cube edges.
 
+$$
+\mathbf{x} \sim \mathbf{P}\mathbf{X}
+$$
+
+Project vertices and draw cube edges.
 ---
 
 ## 🔍 Tracking (Video Augmentation)
@@ -123,20 +143,5 @@ For each frame \(t\):
 
 KAZE was used for more stable keypoints under scale/blur/compression compared to basic corners.
 
----
 
-## ▶️ Getting Started
-
-### Requirements
-- MATLAB
-- Computer Vision Toolbox
-
-### Run order
-1. `Homography.mlx` — correspondences + normalized DLT → **H**  
-2. `Augmented_REALITY.m` — pose + cube projection on a frame  
-3. `ProjectionMatrixVideo.mlx` — tracking + per-frame homography + overlay  
-
----
-
-## 📁 Suggested Repository Layout
 
