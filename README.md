@@ -19,6 +19,9 @@ recover pose (**R, t**), and project a **3D cube** onto real frames using **KAZE
 <p align="center">
   <img src="assets/tracked_output-2-3.gif" width="860" alt="Tracked points (green +) using KAZE"/>
 </p>
+
+**Note:** We did not reach a full AR overlay (no cube projection on video); the demo focuses on robust point tracking during camera motion.
+
 ---
 
 ## 🧭 Pipeline at a glance (then the roadmap)
