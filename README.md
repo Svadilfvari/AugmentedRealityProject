@@ -10,12 +10,15 @@ recover pose (**R, t**), and project a **3D cube** onto real frames using **KAZE
 
 ---
 
-## 🎬 Demo (what you see first)
+## 🎬 Demo (Point Tracking)
+
+> The video shows **manual selection of key pixels** (mouse click) on the planar target.
+> These points are then **tracked across frames using KAZE-based feature tracking/matching**.
+> Tracking is visualized by **green “+” markers** over the image while the camera moves.
 
 <p align="center">
-  <img src="assets/tracked_output-2-3.gif" width="860" alt="Tracking output (AR pipeline)"/>
+  <img src="assets/tracked_output-2-3.gif" width="860" alt="Tracked points (green +) using KAZE"/>
 </p>
-
 ---
 
 ## 🧭 Pipeline at a glance (then the roadmap)
@@ -24,12 +27,11 @@ recover pose (**R, t**), and project a **3D cube** onto real frames using **KAZE
   <img src="assets/pipeline.png" width="860" alt="AR pipeline overview"/>
 </p>
 
-1. **Calibrate camera** → intrinsics **K**  
-2. **Estimate homography** (**H**) with Normalized DLT  
-3. **Recover pose** from \(K^{-1}H\) → **R, t**  
-4. Build \(P = K[R|t]\)  
-5. **Project cube** on images/video  
-6. **Track features** (KAZE / PointTracker) → update \(H_t\) each frame
+1. (Optional) Camera calibration → intrinsics K  
+2. Manual selection of reference pixels on the planar target  
+3. KAZE-based tracking across frames  
+4. Visualize tracked points (green +) and measure stability  
+5. (Optional) Estimate homography H_t from tracked correspondences
 
 ---
 
